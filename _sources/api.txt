@@ -1,0 +1,8 @@
+.. _api:
+
+API
+===
+
+.. module:: gspread
+
+.. autoclass:: Client
