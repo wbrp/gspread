@@ -8,7 +8,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>gspread — Google Spreadsheets Python library &mdash; gspread 0.0.9 documentation</title>
+    <title>gspread — Google Spreadsheets Python library &mdash; gspread 0.0.10 documentation</title>
     
     <link rel="stylesheet" href="_static/default.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -16,7 +16,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '',
-        VERSION:     '0.0.9',
+        VERSION:     '0.0.10',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -25,7 +25,7 @@
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
-    <link rel="top" title="gspread 0.0.9 documentation" href="#" />
+    <link rel="top" title="gspread 0.0.10 documentation" href="#" />
     <link rel="next" title="API Reference" href="reference.html" /> 
   </head>
   <body>
@@ -41,7 +41,7 @@
         <li class="right" >
           <a href="reference.html" title="API Reference"
              accesskey="N">next</a> |</li>
-        <li><a href="#">gspread 0.0.9 documentation</a> &raquo;</li> 
+        <li><a href="#">gspread 0.0.10 documentation</a> &raquo;</li> 
       </ul>
     </div>  
 
@@ -52,11 +52,13 @@
             
   <div class="section" id="gspread-google-spreadsheets-python-library">
 <h1>gspread — Google Spreadsheets Python library<a class="headerlink" href="#gspread-google-spreadsheets-python-library" title="Permalink to this headline">¶</a></h1>
-<p>gspread is a client library for interacting with <a class="reference external" href="http://www.google.com/google-d-s/spreadsheets/">Google Spreadsheets</a>.</p>
+<p><a class="reference external" href="https://github.com/burnash/gspread">gspread</a> is a super simple library
+for interacting with <a class="reference external" href="http://www.google.com/google-d-s/spreadsheets/">Google Spreadsheets</a>.</p>
 <div class="section" id="features">
 <h2>Features<a class="headerlink" href="#features" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li>Open a spreadsheet by its <em>title</em>, <em>url</em> or <em>key</em>.</li>
+<li>Select cells by labels, e.g. &#8216;A1&#8217;.</li>
 <li>Extract range, entire row or column values.</li>
 <li>Independent of Google Data Python client library.</li>
 </ul>
@@ -73,15 +75,21 @@ and fetch a cell&#8217;s value from a spreadsheet:</p>
 <span class="c"># Spreadsheets can be opened by their title in Google Docs</span>
 <span class="n">spreadsheet</span> <span class="o">=</span> <span class="n">gc</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s">&quot;where&#39;s all the money gone 2011&quot;</span><span class="p">)</span>
 
-<span class="c"># Select worksheet by index</span>
-<span class="n">worksheet</span> <span class="o">=</span> <span class="n">spreadsheet</span><span class="o">.</span><span class="n">get_worksheet</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="c"># Get a first worksheet</span>
+<span class="n">worksheet</span> <span class="o">=</span> <span class="n">spreadsheet</span><span class="o">.</span><span class="n">sheet1</span>
 
 <span class="c"># Get a cell value</span>
+<span class="n">val</span> <span class="o">=</span> <span class="n">worksheet</span><span class="o">.</span><span class="n">acell</span><span class="p">(</span><span class="s">&#39;B1&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">value</span>
+
+<span class="c"># Or</span>
 <span class="n">val</span> <span class="o">=</span> <span class="n">worksheet</span><span class="o">.</span><span class="n">cell</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">value</span>
 </pre></div>
 </div>
 <p>The cell&#8217;s value can be easily updated:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="n">worksheet</span><span class="o">.</span><span class="n">update_cell</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="s">&#39;Bingo!&#39;</span><span class="p">)</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">worksheet</span><span class="o">.</span><span class="n">update_acell</span><span class="p">(</span><span class="s">&#39;B1&#39;</span><span class="p">,</span> <span class="s">&#39;Bingo!&#39;</span><span class="p">)</span>
+
+<span class="c"># Or</span>
+<span class="n">worksheet</span><span class="o">.</span><span class="n">update_cell</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="s">&#39;Bingo!&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>To fetch a cell range, specify it by common notation:</p>
@@ -206,7 +214,7 @@ like crazy.</p>
         <li class="right" >
           <a href="reference.html" title="API Reference"
              >next</a> |</li>
-        <li><a href="#">gspread 0.0.9 documentation</a> &raquo;</li> 
+        <li><a href="#">gspread 0.0.10 documentation</a> &raquo;</li> 
       </ul>
     </div>
     <div class="footer">
