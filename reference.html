@@ -374,6 +374,30 @@ e.g. &#8216;A1:A5&#8217;.</td>
 </dd></dl>
 
 <dl class="method">
+<dt id="gspread.Worksheet.update_acell">
+<tt class="descname">update_acell</tt><big>(</big><em>label</em>, <em>val</em><big>)</big><a class="headerlink" href="#gspread.Worksheet.update_acell" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the new value to a cell.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>label</strong> &#8211; String with cell label in common format, e.g. &#8216;B1&#8217;.
+Letter case is ignored.</li>
+<li><strong>val</strong> &#8211; New value.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Example:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">wks</span><span class="o">.</span><span class="n">update_acell</span><span class="p">(</span><span class="s">&#39;A1&#39;</span><span class="p">,</span> <span class="s">&#39;42&#39;</span><span class="p">)</span> <span class="c"># this could be &#39;a1&#39; as well</span>
+<span class="go">&lt;Cell R1C1 &quot;I&#39;m cell A1&quot;&gt;</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="method">
 <dt id="gspread.Worksheet.update_cell">
 <tt class="descname">update_cell</tt><big>(</big><em>row</em>, <em>col</em>, <em>val</em><big>)</big><a class="headerlink" href="#gspread.Worksheet.update_cell" title="Permalink to this definition">¶</a></dt>
 <dd><p>Sets the new value to a cell.</p>
