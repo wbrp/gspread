@@ -8,7 +8,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>gspread — Google Spreadsheets Python library &mdash; gspread 0.0.8 documentation</title>
+    <title>gspread — Google Spreadsheets Python library &mdash; gspread 0.0.9 documentation</title>
     
     <link rel="stylesheet" href="_static/default.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -16,7 +16,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '',
-        VERSION:     '0.0.8',
+        VERSION:     '0.0.9',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -25,7 +25,7 @@
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
-    <link rel="top" title="gspread 0.0.8 documentation" href="#" />
+    <link rel="top" title="gspread 0.0.9 documentation" href="#" />
     <link rel="next" title="API Reference" href="reference.html" /> 
   </head>
   <body>
@@ -41,7 +41,7 @@
         <li class="right" >
           <a href="reference.html" title="API Reference"
              accesskey="N">next</a> |</li>
-        <li><a href="#">gspread 0.0.8 documentation</a> &raquo;</li> 
+        <li><a href="#">gspread 0.0.9 documentation</a> &raquo;</li> 
       </ul>
     </div>  
 
@@ -67,11 +67,11 @@
 and fetches a cell&#8217;s value from a spreadsheet:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">gspread</span>
 
-<span class="n">gc</span> <span class="o">=</span> <span class="n">gspread</span><span class="o">.</span><span class="n">Client</span><span class="p">(</span><span class="n">auth</span><span class="o">=</span><span class="p">(</span><span class="s">&#39;the.email.address@gmail.com&#39;</span><span class="p">,</span><span class="s">&#39;password&#39;</span><span class="p">))</span>
-<span class="n">gc</span><span class="o">.</span><span class="n">login</span><span class="p">()</span>
+<span class="c"># Login with your Google account</span>
+<span class="n">gc</span> <span class="o">=</span> <span class="n">gspread</span><span class="o">.</span><span class="n">login</span><span class="p">(</span><span class="s">&#39;account@gmail.com&#39;</span><span class="p">,</span><span class="s">&#39;password&#39;</span><span class="p">)</span>
 
 <span class="c"># Spreadsheets can be opened by their title in Google Docs</span>
-<span class="n">spreadsheet</span> <span class="o">=</span> <span class="n">gc</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s">&#39;some title&#39;</span><span class="p">)</span>
+<span class="n">spreadsheet</span> <span class="o">=</span> <span class="n">gc</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s">&quot;where&#39;s all the money gone 2011&quot;</span><span class="p">)</span>
 
 <span class="c"># Select worksheet by index</span>
 <span class="n">worksheet</span> <span class="o">=</span> <span class="n">spreadsheet</span><span class="o">.</span><span class="n">get_worksheet</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
@@ -206,7 +206,7 @@ like crazy.</p>
         <li class="right" >
           <a href="reference.html" title="API Reference"
              >next</a> |</li>
-        <li><a href="#">gspread 0.0.8 documentation</a> &raquo;</li> 
+        <li><a href="#">gspread 0.0.9 documentation</a> &raquo;</li> 
       </ul>
     </div>
     <div class="footer">
