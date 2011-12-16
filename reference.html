@@ -271,8 +271,28 @@ instances result from calling other objects&#8217; methods.</p>
 <em class="property">class </em><tt class="descclassname">gspread.</tt><tt class="descname">Worksheet</tt><big>(</big><em>spreadsheet</em>, <em>element</em><big>)</big><a class="headerlink" href="#gspread.Worksheet" title="Permalink to this definition">¶</a></dt>
 <dd><p>A class for worksheet object.</p>
 <dl class="method">
+<dt id="gspread.Worksheet.acell">
+<tt class="descname">acell</tt><big>(</big><em>label</em><big>)</big><a class="headerlink" href="#gspread.Worksheet.acell" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns an instance of a <a class="reference internal" href="#gspread.Cell" title="gspread.Cell"><tt class="xref py py-class docutils literal"><span class="pre">Cell</span></tt></a>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>label</strong> &#8211; String with cell label in common format, e.g. &#8216;B1&#8217;.
+Letter case is ignored.</td>
+</tr>
+</tbody>
+</table>
+<p>Example:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">wks</span><span class="o">.</span><span class="n">acell</span><span class="p">(</span><span class="s">&#39;A1&#39;</span><span class="p">)</span> <span class="c"># this could be &#39;a1&#39; as well</span>
+<span class="go">&lt;Cell R1C1 &quot;I&#39;m cell A1&quot;&gt;</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="method">
 <dt id="gspread.Worksheet.cell">
-<tt class="descname">cell</tt><big>(</big><em>row_or_label=None</em>, <em>col=None</em><big>)</big><a class="headerlink" href="#gspread.Worksheet.cell" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">cell</tt><big>(</big><em>row</em>, <em>col</em><big>)</big><a class="headerlink" href="#gspread.Worksheet.cell" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns an instance of a <a class="reference internal" href="#gspread.Cell" title="gspread.Cell"><tt class="xref py py-class docutils literal"><span class="pre">Cell</span></tt></a> positioned in <cite>row</cite>
 and <cite>col</cite> column.</p>
 <table class="docutils field-list" frame="void" rules="none">
@@ -280,20 +300,14 @@ and <cite>col</cite> column.</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>row_or_name</strong> &#8211; Integer row number or string with cell name in
-common format, e.g. &#8216;B1&#8217;. Letter case is ignored.</li>
+<li><strong>row</strong> &#8211; Integer row number.</li>
 <li><strong>col</strong> &#8211; Integer column number.</li>
 </ul>
 </td>
 </tr>
 </tbody>
 </table>
-<p>There&#8217;re two possible way of calling this method. By string label:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">wks</span><span class="o">.</span><span class="n">cell</span><span class="p">(</span><span class="s">&#39;A1&#39;</span><span class="p">)</span> <span class="c"># this could be &#39;a1&#39; as well</span>
-<span class="go">&lt;Cell R1C1 &quot;I&#39;m cell A1&quot;&gt;</span>
-</pre></div>
-</div>
-<p>Or by integer coords:</p>
+<p>Example:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">wks</span><span class="o">.</span><span class="n">cell</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
 <span class="go">&lt;Cell R1C1 &quot;I&#39;m cell A1&quot;&gt;</span>
 </pre></div>
