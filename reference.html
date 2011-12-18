@@ -8,7 +8,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>API Reference &mdash; gspread 0.0.10 documentation</title>
+    <title>API Reference &mdash; gspread 0.0.11 documentation</title>
     
     <link rel="stylesheet" href="_static/default.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -16,7 +16,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '',
-        VERSION:     '0.0.10',
+        VERSION:     '0.0.11',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -25,7 +25,7 @@
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
-    <link rel="top" title="gspread 0.0.10 documentation" href="index.html" />
+    <link rel="top" title="gspread 0.0.11 documentation" href="index.html" />
     <link rel="prev" title="gspread — Google Spreadsheets Python library" href="index.html" /> 
   </head>
   <body>
@@ -41,7 +41,7 @@
         <li class="right" >
           <a href="index.html" title="gspread — Google Spreadsheets Python library"
              accesskey="P">previous</a> |</li>
-        <li><a href="index.html">gspread 0.0.10 documentation</a> &raquo;</li> 
+        <li><a href="index.html">gspread 0.0.11 documentation</a> &raquo;</li> 
       </ul>
     </div>  
 
@@ -259,6 +259,28 @@ instances result from calling other objects&#8217; methods.</p>
 </dd></dl>
 
 <dl class="method">
+<dt id="gspread.Spreadsheet.worksheet">
+<tt class="descname">worksheet</tt><big>(</big><em>title</em><big>)</big><a class="headerlink" href="#gspread.Spreadsheet.worksheet" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a worksheet with specified <cite>title</cite>.</p>
+<p>The returning object is an instance of <a class="reference internal" href="#gspread.Worksheet" title="gspread.Worksheet"><tt class="xref py py-class docutils literal"><span class="pre">Worksheet</span></tt></a>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>title</strong> &#8211; A title of a worksheet. If there&#8217;re multiple
+worksheets with the same title, first one will
+be returned.</td>
+</tr>
+</tbody>
+</table>
+<p>Example. Getting worksheet named &#8216;Annual bonuses&#8217;</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">sht</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s">&#39;Sample one&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">worksheet</span> <span class="o">=</span> <span class="n">sht</span><span class="o">.</span><span class="n">worksheet</span><span class="p">(</span><span class="s">&#39;Annual bonuses&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="method">
 <dt id="gspread.Spreadsheet.worksheets">
 <tt class="descname">worksheets</tt><big>(</big><big>)</big><a class="headerlink" href="#gspread.Spreadsheet.worksheets" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns a list of all <a class="reference internal" href="#gspread.Worksheet" title="gspread.Worksheet"><tt class="xref py py-class docutils literal"><span class="pre">worksheets</span></tt></a> in a spreadsheet.</p>
@@ -468,25 +490,31 @@ Letter case is ignored.</li>
 <dl class="exception">
 <dt id="gspread.GSpreadException">
 <em class="property">exception </em><tt class="descclassname">gspread.</tt><tt class="descname">GSpreadException</tt><a class="headerlink" href="#gspread.GSpreadException" title="Permalink to this definition">¶</a></dt>
-<dd><p>A base class for gspread&#8217;s exceptions</p>
+<dd><p>A base class for gspread&#8217;s exceptions.</p>
 </dd></dl>
 
 <dl class="exception">
 <dt id="gspread.AuthenticationError">
 <em class="property">exception </em><tt class="descclassname">gspread.</tt><tt class="descname">AuthenticationError</tt><a class="headerlink" href="#gspread.AuthenticationError" title="Permalink to this definition">¶</a></dt>
-<dd><p>An error during authentication process</p>
+<dd><p>An error during authentication process.</p>
 </dd></dl>
 
 <dl class="exception">
 <dt id="gspread.SpreadsheetNotFound">
 <em class="property">exception </em><tt class="descclassname">gspread.</tt><tt class="descname">SpreadsheetNotFound</tt><a class="headerlink" href="#gspread.SpreadsheetNotFound" title="Permalink to this definition">¶</a></dt>
-<dd><p>Trying to open non-existent or inaccessible spreadsheet</p>
+<dd><p>Trying to open non-existent or inaccessible spreadsheet.</p>
+</dd></dl>
+
+<dl class="exception">
+<dt id="gspread.WorksheetNotFound">
+<em class="property">exception </em><tt class="descclassname">gspread.</tt><tt class="descname">WorksheetNotFound</tt><a class="headerlink" href="#gspread.WorksheetNotFound" title="Permalink to this definition">¶</a></dt>
+<dd><p>Trying to open non-existent or inaccessible worksheet.</p>
 </dd></dl>
 
 <dl class="exception">
 <dt id="gspread.NoValidUrlKeyFound">
 <em class="property">exception </em><tt class="descclassname">gspread.</tt><tt class="descname">NoValidUrlKeyFound</tt><a class="headerlink" href="#gspread.NoValidUrlKeyFound" title="Permalink to this definition">¶</a></dt>
-<dd><p>No valid key found in URL</p>
+<dd><p>No valid key found in URL.</p>
 </dd></dl>
 
 </div>
@@ -582,7 +610,7 @@ Letter case is ignored.</li>
         <li class="right" >
           <a href="index.html" title="gspread — Google Spreadsheets Python library"
              >previous</a> |</li>
-        <li><a href="index.html">gspread 0.0.10 documentation</a> &raquo;</li> 
+        <li><a href="index.html">gspread 0.0.11 documentation</a> &raquo;</li> 
       </ul>
     </div>
     <div class="footer">
