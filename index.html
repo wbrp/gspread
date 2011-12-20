@@ -26,7 +26,7 @@
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
     <link rel="top" title="gspread 0.0.11 documentation" href="#" />
-    <link rel="next" title="API Reference" href="reference.html" /> 
+    <link rel="next" title="User Guide" href="userguide.html" /> 
   </head>
   <body>
     <div class="related">
@@ -39,7 +39,7 @@
           <a href="py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
         <li class="right" >
-          <a href="reference.html" title="API Reference"
+          <a href="userguide.html" title="User Guide"
              accesskey="N">next</a> |</li>
         <li><a href="#">gspread 0.0.11 documentation</a> &raquo;</li> 
       </ul>
@@ -52,8 +52,41 @@
             
   <div class="section" id="gspread-google-spreadsheets-python-library">
 <h1>gspread — Google Spreadsheets Python library<a class="headerlink" href="#gspread-google-spreadsheets-python-library" title="Permalink to this headline">¶</a></h1>
-<p><a class="reference external" href="https://github.com/burnash/gspread">gspread</a> is a super simple library
+<p><a class="reference external" href="https://github.com/burnash/gspread">gspread</a> is a simple library
 for interacting with <a class="reference external" href="http://www.google.com/google-d-s/spreadsheets/">Google Spreadsheets</a>.</p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="userguide.html">User Guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="userguide.html#installation">Installation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="userguide.html#from-github">From GitHub</a></li>
+<li class="toctree-l3"><a class="reference internal" href="userguide.html#from-pypi">From Pypi</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="userguide.html#quickstart">Quickstart</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="userguide.html#signing-in">Signing In</a></li>
+<li class="toctree-l3"><a class="reference internal" href="userguide.html#openning-a-spreadsheet">Openning A Spreadsheet</a></li>
+<li class="toctree-l3"><a class="reference internal" href="userguide.html#selecting-a-worksheet">Selecting A Worksheet</a></li>
+<li class="toctree-l3"><a class="reference internal" href="userguide.html#getting-a-cell">Getting A Cell</a></li>
+<li class="toctree-l3"><a class="reference internal" href="userguide.html#getting-the-entire-row-or-column">Getting The Entire Row Or Column</a></li>
+<li class="toctree-l3"><a class="reference internal" href="userguide.html#selecting-a-cell-range">Selecting A Cell Range</a></li>
+<li class="toctree-l3"><a class="reference internal" href="userguide.html#updating-cells">Updating Cells</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="reference.html">API Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="reference.html#main-interface">Main Interface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="reference.html#models">Models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="reference.html#exceptions">Exceptions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="reference.html#internal-modules">Internal Modules</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="reference.html#gspread-httpsession">gspread.httpsession</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference.html#gspread-urls">gspread.urls</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
 <div class="section" id="features">
 <h2>Features<a class="headerlink" href="#features" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
@@ -104,38 +137,6 @@ and fetch a cell&#8217;s value from a spreadsheet:</p>
 </pre></div>
 </div>
 </div>
-<div class="section" id="installation">
-<h2>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="from-pypi">
-<h3>From Pypi<a class="headerlink" href="#from-pypi" title="Permalink to this headline">¶</a></h3>
-<div class="highlight-python"><pre>pip install gspread</pre>
-</div>
-<p>If you&#8217;re on easy_install, it&#8217;s:</p>
-<div class="highlight-python"><pre>easy_install gspread</pre>
-</div>
-</div>
-<div class="section" id="from-github">
-<h3>From github<a class="headerlink" href="#from-github" title="Permalink to this headline">¶</a></h3>
-<div class="highlight-python"><pre>git clone https://github.com/burnash/gspread.git
-cd gspread
-python setup.py install</pre>
-</div>
-</div>
-</div>
-</div>
-<div class="section" id="reference">
-<h1>Reference<a class="headerlink" href="#reference" title="Permalink to this headline">¶</a></h1>
-<div class="toctree-wrapper compound">
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="reference.html">API Reference</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="reference.html#main-interface">Main interface</a></li>
-<li class="toctree-l2"><a class="reference internal" href="reference.html#models">Models</a></li>
-<li class="toctree-l2"><a class="reference internal" href="reference.html#exceptions">Exceptions</a></li>
-<li class="toctree-l2"><a class="reference internal" href="reference.html#internal-modules">Internal modules</a></li>
-</ul>
-</li>
-</ul>
-</div>
 </div>
 <div class="section" id="code">
 <h1>Code<a class="headerlink" href="#code" title="Permalink to this headline">¶</a></h1>
@@ -163,14 +164,6 @@ like crazy.</p>
 <li><a class="reference internal" href="#">gspread — Google Spreadsheets Python library</a><ul>
 <li><a class="reference internal" href="#features">Features</a></li>
 <li><a class="reference internal" href="#example">Example</a></li>
-<li><a class="reference internal" href="#installation">Installation</a><ul>
-<li><a class="reference internal" href="#from-pypi">From Pypi</a></li>
-<li><a class="reference internal" href="#from-github">From github</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><a class="reference internal" href="#reference">Reference</a><ul>
 </ul>
 </li>
 <li><a class="reference internal" href="#code">Code</a></li>
@@ -178,8 +171,8 @@ like crazy.</p>
 </ul>
 
   <h4>Next topic</h4>
-  <p class="topless"><a href="reference.html"
-                        title="next chapter">API Reference</a></p>
+  <p class="topless"><a href="userguide.html"
+                        title="next chapter">User Guide</a></p>
   <h3>This Page</h3>
   <ul class="this-page-menu">
     <li><a href="_sources/index.txt"
@@ -212,7 +205,7 @@ like crazy.</p>
           <a href="py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
         <li class="right" >
-          <a href="reference.html" title="API Reference"
+          <a href="userguide.html" title="User Guide"
              >next</a> |</li>
         <li><a href="#">gspread 0.0.11 documentation</a> &raquo;</li> 
       </ul>
