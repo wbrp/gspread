@@ -74,7 +74,7 @@ class Client(object):
 
         """
         source = 'burnash-gspread-%s' % __version__
-        service = 'wise'
+        service = 'writely'
 
         data = {'Email': self.auth[0],
                 'Passwd': self.auth[1],
@@ -90,6 +90,7 @@ class Client(object):
             token = self._get_auth_token(content)
             auth_header = "GoogleLogin auth=%s" % token
             self.session.add_header('Authorization', auth_header)
+            self.session.add_header('GData-Version', '3.0')
 
         except HTTPError as ex:
             if ex.code == 403:
@@ -191,6 +192,23 @@ class Client(object):
 
         return result
 
+    def create(self, title):
+        r = self.session.get('https://docs.google.com/feeds/default/private/full')
+
+        t = ElementTree.fromstring(r.read())
+        el = finditem(lambda x: x.get('rel') == 'http://schemas.google.com/g/2005#resumable-create-media', t.findall(_ns('link')))
+        link = el.get('href')
+
+        data = """
+<entry xmlns="http://www.w3.org/2005/Atom" xmlns:docs="http://schemas.google.com/docs/2007">
+  <!-- Replace the following line appropriately to create another type of resource. -->
+  <category scheme="http://schemas.google.com/g/2005#kind"
+      term="http://schemas.google.com/docs/2007#document"/>
+  <title>TestingCreate</title>
+</entry>
+        """
+        self.post_feed(link, data)
+
     def get_spreadsheets_feed(self, visibility='private', projection='full'):
         url = construct_url('spreadsheets',
                             visibility=visibility, projection=projection)
@@ -237,7 +255,8 @@ class Client(object):
         return ElementTree.fromstring(r.read())
 
     def put_feed(self, url, data):
-        headers = {'Content-Type': 'application/atom+xml'}
+        headers = {'Content-Type': 'application/atom+xml',
+                   'If-Match': '*'}
         data = self._add_xml_header(data)
 
         try:
