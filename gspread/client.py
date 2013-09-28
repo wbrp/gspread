@@ -193,6 +193,7 @@ class Client(object):
         return result
 
     def create(self, title):
+        # https://developers.google.com/google-apps/documents-list/#creating_a_new_document_or_file_with_metadata_only
         r = self.session.get('https://docs.google.com/feeds/default/private/full')
 
         t = ElementTree.fromstring(r.read())
