@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
@@ -8,15 +6,15 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>gspread — Google Spreadsheets Python library &mdash; gspread 0.0.12 documentation</title>
+    <title>gspread API Reference &mdash; gspread 0.1.0 documentation</title>
     
     <link rel="stylesheet" href="_static/default.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    '',
-        VERSION:     '0.0.12',
+        URL_ROOT:    './',
+        VERSION:     '0.1.0',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -25,8 +23,7 @@
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
-    <link rel="top" title="gspread 0.0.12 documentation" href="#" />
-    <link rel="next" title="User Guide" href="userguide.html" /> 
+    <link rel="top" title="gspread 0.1.0 documentation" href="#" /> 
   </head>
   <body>
     <div class="related">
@@ -38,10 +35,7 @@
         <li class="right" >
           <a href="py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
-        <li class="right" >
-          <a href="userguide.html" title="User Guide"
-             accesskey="N">next</a> |</li>
-        <li><a href="#">gspread 0.0.12 documentation</a> &raquo;</li> 
+        <li><a href="#">gspread 0.1.0 documentation</a> &raquo;</li> 
       </ul>
     </div>  
 
@@ -50,100 +44,722 @@
         <div class="bodywrapper">
           <div class="body">
             
-  <div class="section" id="gspread-google-spreadsheets-python-library">
-<h1>gspread — Google Spreadsheets Python library<a class="headerlink" href="#gspread-google-spreadsheets-python-library" title="Permalink to this headline">¶</a></h1>
-<p><a class="reference external" href="https://github.com/burnash/gspread">gspread</a> is a simple library
-for interacting with <a class="reference external" href="http://www.google.com/google-d-s/spreadsheets/">Google Spreadsheets</a>.</p>
-<div class="toctree-wrapper compound">
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="userguide.html">User Guide</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="userguide.html#installation">Installation</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="userguide.html#from-github">From GitHub</a></li>
-<li class="toctree-l3"><a class="reference internal" href="userguide.html#from-pypi">From Pypi</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="userguide.html#quickstart">Quickstart</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="userguide.html#signing-in">Signing In</a></li>
-<li class="toctree-l3"><a class="reference internal" href="userguide.html#openning-a-spreadsheet">Openning A Spreadsheet</a></li>
-<li class="toctree-l3"><a class="reference internal" href="userguide.html#selecting-a-worksheet">Selecting A Worksheet</a></li>
-<li class="toctree-l3"><a class="reference internal" href="userguide.html#getting-a-cell">Getting A Cell</a></li>
-<li class="toctree-l3"><a class="reference internal" href="userguide.html#getting-the-entire-row-or-column">Getting The Entire Row Or Column</a></li>
-<li class="toctree-l3"><a class="reference internal" href="userguide.html#selecting-a-cell-range">Selecting A Cell Range</a></li>
-<li class="toctree-l3"><a class="reference internal" href="userguide.html#updating-cells">Updating Cells</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="reference.html">API Reference</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="reference.html#main-interface">Main Interface</a></li>
-<li class="toctree-l2"><a class="reference internal" href="reference.html#models">Models</a></li>
-<li class="toctree-l2"><a class="reference internal" href="reference.html#exceptions">Exceptions</a></li>
-<li class="toctree-l2"><a class="reference internal" href="reference.html#internal-modules">Internal Modules</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="reference.html#gspread-httpsession">gspread.httpsession</a></li>
-<li class="toctree-l3"><a class="reference internal" href="reference.html#gspread-urls">gspread.urls</a></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</div>
-<div class="section" id="features">
-<h2>Features<a class="headerlink" href="#features" title="Permalink to this headline">¶</a></h2>
+  <div class="section" id="gspread-api-reference">
+<h1>gspread API Reference<a class="headerlink" href="#gspread-api-reference" title="Permalink to this headline">¶</a></h1>
+<p><a class="reference external" href="https://github.com/burnash/gspread">gspread</a> is a simple <a class="reference external" href="http://www.google.com/drive/apps.html">Google Spreadsheets</a> API wrapper.</p>
+<span class="target" id="module-gspread"></span><div class="contents local topic" id="contents">
 <ul class="simple">
-<li>Open a spreadsheet by its <em>title</em>, <em>url</em> or <em>key</em>.</li>
-<li>Select cells by labels, e.g. &#8216;A1&#8217;.</li>
-<li>Extract range, entire row or column values.</li>
-<li>Independent of Google Data Python client library.</li>
-<li>Python 3 support.</li>
+<li><a class="reference internal" href="#main-interface" id="id1">Main Interface</a></li>
+<li><a class="reference internal" href="#models" id="id2">Models</a></li>
+<li><a class="reference internal" href="#exceptions" id="id3">Exceptions</a></li>
+<li><a class="reference internal" href="#internal-modules" id="id4">Internal Modules</a><ul>
+<li><a class="reference internal" href="#gspread-httpsession" id="id5">gspread.httpsession</a></li>
+<li><a class="reference internal" href="#gspread-urls" id="id6">gspread.urls</a></li>
+</ul>
+</li>
 </ul>
 </div>
-<div class="section" id="example">
-<h2>Example<a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h2>
-<p>This code will connect to Google Data API
-and fetch a cell&#8217;s value from a spreadsheet:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">gspread</span>
+<div class="section" id="main-interface">
+<h2><a class="toc-backref" href="#id1">Main Interface</a><a class="headerlink" href="#main-interface" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="gspread.login">
+<tt class="descclassname">gspread.</tt><tt class="descname">login</tt><big>(</big><em>email</em>, <em>password</em><big>)</big><a class="headerlink" href="#gspread.login" title="Permalink to this definition">¶</a></dt>
+<dd><p>Login to Google API using <cite>email</cite> and <cite>password</cite>.</p>
+<p>This is a shortcut function which instantiates <a class="reference internal" href="#gspread.Client" title="gspread.Client"><tt class="xref py py-class docutils literal"><span class="pre">Client</span></tt></a>
+and performes login right away.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"><a class="reference internal" href="#gspread.Client" title="gspread.Client"><tt class="xref py py-class docutils literal"><span class="pre">Client</span></tt></a> instance.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
 
-<span class="c"># Login with your Google account</span>
-<span class="n">gc</span> <span class="o">=</span> <span class="n">gspread</span><span class="o">.</span><span class="n">login</span><span class="p">(</span><span class="s">&#39;account@gmail.com&#39;</span><span class="p">,</span><span class="s">&#39;password&#39;</span><span class="p">)</span>
-
-<span class="c"># Spreadsheets can be opened by their title in Google Docs</span>
-<span class="n">spreadsheet</span> <span class="o">=</span> <span class="n">gc</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s">&quot;where&#39;s all the money gone 2011&quot;</span><span class="p">)</span>
-
-<span class="c"># Get a first worksheet</span>
-<span class="n">worksheet</span> <span class="o">=</span> <span class="n">spreadsheet</span><span class="o">.</span><span class="n">sheet1</span>
-
-<span class="c"># Get a cell value</span>
-<span class="n">val</span> <span class="o">=</span> <span class="n">worksheet</span><span class="o">.</span><span class="n">acell</span><span class="p">(</span><span class="s">&#39;B1&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">value</span>
-
-<span class="c"># Or</span>
-<span class="n">val</span> <span class="o">=</span> <span class="n">worksheet</span><span class="o">.</span><span class="n">cell</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">value</span>
+<dl class="class">
+<dt id="gspread.Client">
+<em class="property">class </em><tt class="descclassname">gspread.</tt><tt class="descname">Client</tt><big>(</big><em>auth</em>, <em>http_session=None</em><big>)</big><a class="headerlink" href="#gspread.Client" title="Permalink to this definition">¶</a></dt>
+<dd><p>An instance of this class communicates with Google Data API.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>auth</strong> &#8211; A tuple containing an <em>email</em> and a <em>password</em> used for ClientLogin
+authentication.</li>
+<li><strong>http_session</strong> &#8211; (optional) A session object capable of making HTTP requests while persisting headers.
+Defaults to <a class="reference internal" href="#gspread.httpsession.HTTPSession" title="gspread.httpsession.HTTPSession"><tt class="xref py py-class docutils literal"><span class="pre">HTTPSession</span></tt></a>.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">c</span> <span class="o">=</span> <span class="n">gspread</span><span class="o">.</span><span class="n">Client</span><span class="p">(</span><span class="n">auth</span><span class="o">=</span><span class="p">(</span><span class="s">&#39;user@example.com&#39;</span><span class="p">,</span> <span class="s">&#39;qwertypassword&#39;</span><span class="p">))</span>
+<span class="go">&gt;&gt;&gt;</span>
 </pre></div>
 </div>
-<p>The cell&#8217;s value can be easily updated:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="n">worksheet</span><span class="o">.</span><span class="n">update_acell</span><span class="p">(</span><span class="s">&#39;B1&#39;</span><span class="p">,</span> <span class="s">&#39;Bingo!&#39;</span><span class="p">)</span>
+<dl class="method">
+<dt id="gspread.Client.login">
+<tt class="descname">login</tt><big>(</big><big>)</big><a class="headerlink" href="#gspread.Client.login" title="Permalink to this definition">¶</a></dt>
+<dd><p>Authorize client using ClientLogin protocol.</p>
+<p>The credentials provided in <cite>auth</cite> parameter to class&#8217; constructor will be used.</p>
+<p>This method is using API described at:
+<a class="reference external" href="http://code.google.com/apis/accounts/docs/AuthForInstalledApps.html">http://code.google.com/apis/accounts/docs/AuthForInstalledApps.html</a></p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name" colspan="2">Raises AuthenticationError:</th></tr>
+<tr class="field-odd field"><td>&nbsp;</td><td class="field-body">if login attempt fails.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
 
-<span class="c"># Or</span>
-<span class="n">worksheet</span><span class="o">.</span><span class="n">update_cell</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="s">&#39;Bingo!&#39;</span><span class="p">)</span>
+<dl class="method">
+<dt id="gspread.Client.open">
+<tt class="descname">open</tt><big>(</big><em>title</em><big>)</big><a class="headerlink" href="#gspread.Client.open" title="Permalink to this definition">¶</a></dt>
+<dd><p>Opens a spreadsheet, returning a <a class="reference internal" href="#gspread.Spreadsheet" title="gspread.Spreadsheet"><tt class="xref py py-class docutils literal"><span class="pre">Spreadsheet</span></tt></a> instance.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>title</strong> &#8211; A title of a spreadsheet.</td>
+</tr>
+</tbody>
+</table>
+<p>If there&#8217;s more than one spreadsheet with same title the first one
+will be opened.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name" colspan="2">Raises <a class="reference internal" href="#gspread.SpreadsheetNotFound" title="gspread.SpreadsheetNotFound">gspread.SpreadsheetNotFound</a>:</th></tr>
+<tr class="field-odd field"><td>&nbsp;</td><td class="field-body">if no spreadsheet with
+specified <cite>title</cite> is found.</td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">c</span> <span class="o">=</span> <span class="n">gspread</span><span class="o">.</span><span class="n">Client</span><span class="p">(</span><span class="n">auth</span><span class="o">=</span><span class="p">(</span><span class="s">&#39;user@example.com&#39;</span><span class="p">,</span> <span class="s">&#39;qwertypassword&#39;</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">c</span><span class="o">.</span><span class="n">login</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">c</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s">&#39;My fancy spreadsheet&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>To fetch a cell range, specify it by common notation:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="n">cell_list</span> <span class="o">=</span> <span class="n">worksheet</span><span class="o">.</span><span class="n">range</span><span class="p">(</span><span class="s">&#39;A1:A7&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
-<p>After some processing, this range can be updated in batch:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="k">for</span> <span class="n">cell</span> <span class="ow">in</span> <span class="n">cell_list</span><span class="p">:</span>
-    <span class="n">cell</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="s">&#39;O_o&#39;</span>
+</dd></dl>
 
-<span class="n">worksheet</span><span class="o">.</span><span class="n">update_cells</span><span class="p">(</span><span class="n">cell_list</span><span class="p">)</span>
+<dl class="method">
+<dt id="gspread.Client.open_by_key">
+<tt class="descname">open_by_key</tt><big>(</big><em>key</em><big>)</big><a class="headerlink" href="#gspread.Client.open_by_key" title="Permalink to this definition">¶</a></dt>
+<dd><p>Opens a spreadsheet specified by <cite>key</cite>, returning a <a class="reference internal" href="#gspread.Spreadsheet" title="gspread.Spreadsheet"><tt class="xref py py-class docutils literal"><span class="pre">Spreadsheet</span></tt></a> instance.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>key</strong> &#8211; A key of a spreadsheet as it appears in a URL in a browser.</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">Raises <a class="reference internal" href="#gspread.SpreadsheetNotFound" title="gspread.SpreadsheetNotFound">gspread.SpreadsheetNotFound</a>:</th></tr>
+<tr class="field-even field"><td>&nbsp;</td><td class="field-body">if no spreadsheet with
+specified <cite>key</cite> is found.</td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">c</span> <span class="o">=</span> <span class="n">gspread</span><span class="o">.</span><span class="n">Client</span><span class="p">(</span><span class="n">auth</span><span class="o">=</span><span class="p">(</span><span class="s">&#39;user@example.com&#39;</span><span class="p">,</span> <span class="s">&#39;qwertypassword&#39;</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">c</span><span class="o">.</span><span class="n">login</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">c</span><span class="o">.</span><span class="n">open_by_key</span><span class="p">(</span><span class="s">&#39;0BmgG6nO_6dprdS1MN3d3MkdPa142WFRrdnRRUWl1UFE&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
+</dd></dl>
+
+<dl class="method">
+<dt id="gspread.Client.open_by_url">
+<tt class="descname">open_by_url</tt><big>(</big><em>url</em><big>)</big><a class="headerlink" href="#gspread.Client.open_by_url" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="docutils">
+<dt>Opens a spreadsheet specified by <cite>url</cite>,</dt>
+<dd>returning a <a class="reference internal" href="#gspread.Spreadsheet" title="gspread.Spreadsheet"><tt class="xref py py-class docutils literal"><span class="pre">Spreadsheet</span></tt></a> instance.</dd>
+</dl>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>url</strong> &#8211; URL of a spreadsheet as it appears in a browser.</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">Raises <a class="reference internal" href="#gspread.SpreadsheetNotFound" title="gspread.SpreadsheetNotFound">gspread.SpreadsheetNotFound</a>:</th></tr>
+<tr class="field-even field"><td>&nbsp;</td><td class="field-body">if no spreadsheet with
+specified <cite>url</cite> is found.</td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">c</span> <span class="o">=</span> <span class="n">gspread</span><span class="o">.</span><span class="n">Client</span><span class="p">(</span><span class="n">auth</span><span class="o">=</span><span class="p">(</span><span class="s">&#39;user@example.com&#39;</span><span class="p">,</span> <span class="s">&#39;qwertypassword&#39;</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">c</span><span class="o">.</span><span class="n">login</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">c</span><span class="o">.</span><span class="n">open_by_url</span><span class="p">(</span><span class="s">&#39;https://docs.google.com/spreadsheet/ccc?key=0Bm...FE&amp;hl&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="gspread.Client.openall">
+<tt class="descname">openall</tt><big>(</big><em>title=None</em><big>)</big><a class="headerlink" href="#gspread.Client.openall" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="docutils">
+<dt>Opens all available spreadsheets,</dt>
+<dd>returning a list of a <a class="reference internal" href="#gspread.Spreadsheet" title="gspread.Spreadsheet"><tt class="xref py py-class docutils literal"><span class="pre">Spreadsheet</span></tt></a> instances.</dd>
+</dl>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>title</strong> &#8211; (optional) If specified can be used to filter
+spreadsheets by title.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="models">
+<h2><a class="toc-backref" href="#id2">Models</a><a class="headerlink" href="#models" title="Permalink to this headline">¶</a></h2>
+<p>The models represent common spreadsheet objects: <a class="reference internal" href="#gspread.Spreadsheet" title="gspread.Spreadsheet"><tt class="xref py py-class docutils literal"><span class="pre">a</span> <span class="pre">spreadsheet</span></tt></a>,
+<a class="reference internal" href="#gspread.Worksheet" title="gspread.Worksheet"><tt class="xref py py-class docutils literal"><span class="pre">a</span> <span class="pre">worksheet</span></tt></a> and <a class="reference internal" href="#gspread.Cell" title="gspread.Cell"><tt class="xref py py-class docutils literal"><span class="pre">a</span> <span class="pre">cell</span></tt></a>.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The classes described below should not be instantiated by end-user. Their
+instances result from calling other objects&#8217; methods.</p>
+</div>
+<dl class="class">
+<dt id="gspread.Spreadsheet">
+<em class="property">class </em><tt class="descclassname">gspread.</tt><tt class="descname">Spreadsheet</tt><big>(</big><em>client</em>, <em>feed_entry</em><big>)</big><a class="headerlink" href="#gspread.Spreadsheet" title="Permalink to this definition">¶</a></dt>
+<dd><p>A class for a spreadsheet object.</p>
+<dl class="method">
+<dt id="gspread.Spreadsheet.add_worksheet">
+<tt class="descname">add_worksheet</tt><big>(</big><em>title</em>, <em>rows</em>, <em>cols</em><big>)</big><a class="headerlink" href="#gspread.Spreadsheet.add_worksheet" title="Permalink to this definition">¶</a></dt>
+<dd><p>Adds a new worksheet to a spreadsheet.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>title</strong> &#8211; A title of a new worksheet.</li>
+<li><strong>rows</strong> &#8211; Number of rows.</li>
+<li><strong>cols</strong> &#8211; Number of columns.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Returns a newly created <a class="reference internal" href="#gspread.Worksheet" title="gspread.Worksheet"><tt class="xref py py-class docutils literal"><span class="pre">worksheets</span></tt></a>.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="gspread.Spreadsheet.del_worksheet">
+<tt class="descname">del_worksheet</tt><big>(</big><em>worksheet</em><big>)</big><a class="headerlink" href="#gspread.Spreadsheet.del_worksheet" title="Permalink to this definition">¶</a></dt>
+<dd><p>Deletes a worksheet from a spreadsheet.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>worksheet</strong> &#8211; The worksheet to be deleted.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="gspread.Spreadsheet.get_worksheet">
+<tt class="descname">get_worksheet</tt><big>(</big><em>index</em><big>)</big><a class="headerlink" href="#gspread.Spreadsheet.get_worksheet" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a worksheet with specified <cite>index</cite>.</p>
+<p>The returning object is an instance of <a class="reference internal" href="#gspread.Worksheet" title="gspread.Worksheet"><tt class="xref py py-class docutils literal"><span class="pre">Worksheet</span></tt></a>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>index</strong> &#8211; An index of a worksheet. Indexes start from zero.</td>
+</tr>
+</tbody>
+</table>
+<p>Example. To get first worksheet of a spreadsheet:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">sht</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s">&#39;My fancy spreadsheet&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">worksheet</span> <span class="o">=</span> <span class="n">sht</span><span class="o">.</span><span class="n">get_worksheet</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Returns <cite>None</cite> if the worksheet is not found.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="gspread.Spreadsheet.sheet1">
+<tt class="descname">sheet1</tt><em class="property"> None</em><a class="headerlink" href="#gspread.Spreadsheet.sheet1" title="Permalink to this definition">¶</a></dt>
+<dd><p>Shortcut property for getting the first worksheet.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="gspread.Spreadsheet.worksheet">
+<tt class="descname">worksheet</tt><big>(</big><em>title</em><big>)</big><a class="headerlink" href="#gspread.Spreadsheet.worksheet" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a worksheet with specified <cite>title</cite>.</p>
+<p>The returning object is an instance of <a class="reference internal" href="#gspread.Worksheet" title="gspread.Worksheet"><tt class="xref py py-class docutils literal"><span class="pre">Worksheet</span></tt></a>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>title</strong> &#8211; A title of a worksheet. If there&#8217;re multiple
+worksheets with the same title, first one will
+be returned.</td>
+</tr>
+</tbody>
+</table>
+<p>Example. Getting worksheet named &#8216;Annual bonuses&#8217;</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">sht</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s">&#39;Sample one&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">worksheet</span> <span class="o">=</span> <span class="n">sht</span><span class="o">.</span><span class="n">worksheet</span><span class="p">(</span><span class="s">&#39;Annual bonuses&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="gspread.Spreadsheet.worksheets">
+<tt class="descname">worksheets</tt><big>(</big><big>)</big><a class="headerlink" href="#gspread.Spreadsheet.worksheets" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a list of all <a class="reference internal" href="#gspread.Worksheet" title="gspread.Worksheet"><tt class="xref py py-class docutils literal"><span class="pre">worksheets</span></tt></a>
+in a spreadsheet.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="gspread.Worksheet">
+<em class="property">class </em><tt class="descclassname">gspread.</tt><tt class="descname">Worksheet</tt><big>(</big><em>spreadsheet</em>, <em>element</em><big>)</big><a class="headerlink" href="#gspread.Worksheet" title="Permalink to this definition">¶</a></dt>
+<dd><p>A class for worksheet object.</p>
+<dl class="method">
+<dt id="gspread.Worksheet.acell">
+<tt class="descname">acell</tt><big>(</big><em>label</em><big>)</big><a class="headerlink" href="#gspread.Worksheet.acell" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns an instance of a <a class="reference internal" href="#gspread.Cell" title="gspread.Cell"><tt class="xref py py-class docutils literal"><span class="pre">Cell</span></tt></a>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>label</strong> &#8211; String with cell label in common format, e.g. &#8216;B1&#8217;.
+Letter case is ignored.</td>
+</tr>
+</tbody>
+</table>
+<p>Example:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">wks</span><span class="o">.</span><span class="n">acell</span><span class="p">(</span><span class="s">&#39;A1&#39;</span><span class="p">)</span> <span class="c"># this could be &#39;a1&#39; as well</span>
+<span class="go">&lt;Cell R1C1 &quot;I&#39;m cell A1&quot;&gt;</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="gspread.Worksheet.add_cols">
+<tt class="descname">add_cols</tt><big>(</big><em>cols</em><big>)</big><a class="headerlink" href="#gspread.Worksheet.add_cols" title="Permalink to this definition">¶</a></dt>
+<dd><p>Adds colums to worksheet.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>cols</strong> &#8211; Columns number to add.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="gspread.Worksheet.add_rows">
+<tt class="descname">add_rows</tt><big>(</big><em>rows</em><big>)</big><a class="headerlink" href="#gspread.Worksheet.add_rows" title="Permalink to this definition">¶</a></dt>
+<dd><p>Adds rows to worksheet.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>rows</strong> &#8211; Rows number to add.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="gspread.Worksheet.append_row">
+<tt class="descname">append_row</tt><big>(</big><em>values</em><big>)</big><a class="headerlink" href="#gspread.Worksheet.append_row" title="Permalink to this definition">¶</a></dt>
+<dd><p>&#8220;Adds a row to the worksheet and populates it with values.
+Widens the worksheet if there are more values than columns.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>values</strong> &#8211; List of values for the new row.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="gspread.Worksheet.cell">
+<tt class="descname">cell</tt><big>(</big><em>row</em>, <em>col</em><big>)</big><a class="headerlink" href="#gspread.Worksheet.cell" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="docutils">
+<dt>Returns an instance of a <a class="reference internal" href="#gspread.Cell" title="gspread.Cell"><tt class="xref py py-class docutils literal"><span class="pre">Cell</span></tt></a> positioned in <cite>row</cite></dt>
+<dd>and <cite>col</cite> column.</dd>
+</dl>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>row</strong> &#8211; Integer row number.</li>
+<li><strong>col</strong> &#8211; Integer column number.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Example:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">wks</span><span class="o">.</span><span class="n">cell</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="go">&lt;Cell R1C1 &quot;I&#39;m cell A1&quot;&gt;</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="gspread.Worksheet.col_count">
+<tt class="descname">col_count</tt><em class="property"> None</em><a class="headerlink" href="#gspread.Worksheet.col_count" title="Permalink to this definition">¶</a></dt>
+<dd><p>Number of columns</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="gspread.Worksheet.col_values">
+<tt class="descname">col_values</tt><big>(</big><em>col</em><big>)</big><a class="headerlink" href="#gspread.Worksheet.col_values" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a list of all values in column <cite>col</cite>.</p>
+<p>Empty cells in this list will be rendered as <tt class="xref py py-const docutils literal"><span class="pre">None</span></tt>.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="gspread.Worksheet.find">
+<tt class="descname">find</tt><big>(</big><em>query</em><big>)</big><a class="headerlink" href="#gspread.Worksheet.find" title="Permalink to this definition">¶</a></dt>
+<dd><p>Finds first cell matching query.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>query</strong> &#8211; A text string or compiled regular expression.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="gspread.Worksheet.findall">
+<tt class="descname">findall</tt><big>(</big><em>query</em><big>)</big><a class="headerlink" href="#gspread.Worksheet.findall" title="Permalink to this definition">¶</a></dt>
+<dd><p>Finds all cells matching query.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>query</strong> &#8211; A text string or compiled regular expression.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="gspread.Worksheet.get_addr_int">
+<tt class="descname">get_addr_int</tt><big>(</big><em>row</em>, <em>col</em><big>)</big><a class="headerlink" href="#gspread.Worksheet.get_addr_int" title="Permalink to this definition">¶</a></dt>
+<dd><p>Translates cell&#8217;s tuple of integers to a cell label.</p>
+<p>The result is a string containing the cell&#8217;s coordinates in label form.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>row</strong> &#8211; The row of the cell to be converted.
+Rows start at index 1.</li>
+<li><strong>col</strong> &#8211; The column of the cell to be converted.
+Columns start at index 1.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Example:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">wks</span><span class="o">.</span><span class="n">get_addr_int</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="go">A1</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="gspread.Worksheet.get_all_records">
+<tt class="descname">get_all_records</tt><big>(</big><em>empty2zero=False</em><big>)</big><a class="headerlink" href="#gspread.Worksheet.get_all_records" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="docutils">
+<dt>Returns a list of dictionaries, all of them having:</dt>
+<dd><ul class="first simple">
+<li>the contents of the spreadsheet&#8217;s first row of cells as keys,</li>
+</ul>
+<p class="last">And each of these dictionaries holding
+- the contents of subsequent rows of cells as values.</p>
+</dd>
+</dl>
+<p>Cell values are numericised (strings that can be read as ints
+or floats are converted).</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>empty2zero</strong> &#8211; determines whether empty cells are converted to zeros.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="gspread.Worksheet.get_all_values">
+<tt class="descname">get_all_values</tt><big>(</big><big>)</big><a class="headerlink" href="#gspread.Worksheet.get_all_values" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a list of lists containing all cells&#8217; values as strings.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="gspread.Worksheet.get_int_addr">
+<tt class="descname">get_int_addr</tt><big>(</big><em>label</em><big>)</big><a class="headerlink" href="#gspread.Worksheet.get_int_addr" title="Permalink to this definition">¶</a></dt>
+<dd><p>Translates cell&#8217;s label address to a tuple of integers.</p>
+<p>The result is a tuple containing <cite>row</cite> and <cite>column</cite> numbers.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>label</strong> &#8211; String with cell label in common format, e.g. &#8216;B1&#8217;.
+Letter case is ignored.</td>
+</tr>
+</tbody>
+</table>
+<p>Example:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">wks</span><span class="o">.</span><span class="n">get_int_addr</span><span class="p">(</span><span class="s">&#39;A1&#39;</span><span class="p">)</span>
+<span class="go">(1, 1)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="gspread.Worksheet.id">
+<tt class="descname">id</tt><em class="property"> None</em><a class="headerlink" href="#gspread.Worksheet.id" title="Permalink to this definition">¶</a></dt>
+<dd><p>Id of a worksheet.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="gspread.Worksheet.range">
+<tt class="descname">range</tt><big>(</big><em>alphanum</em><big>)</big><a class="headerlink" href="#gspread.Worksheet.range" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a list of <a class="reference internal" href="#gspread.Cell" title="gspread.Cell"><tt class="xref py py-class docutils literal"><span class="pre">Cell</span></tt></a> objects from specified range.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>alphanum</strong> &#8211; A string with range value in common format,
+e.g. &#8216;A1:A5&#8217;.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="gspread.Worksheet.resize">
+<tt class="descname">resize</tt><big>(</big><em>rows=None</em>, <em>cols=None</em><big>)</big><a class="headerlink" href="#gspread.Worksheet.resize" title="Permalink to this definition">¶</a></dt>
+<dd><p>Resizes the worksheet.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>rows</strong> &#8211; New rows number.</li>
+<li><strong>cols</strong> &#8211; New columns number.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="gspread.Worksheet.row_count">
+<tt class="descname">row_count</tt><em class="property"> None</em><a class="headerlink" href="#gspread.Worksheet.row_count" title="Permalink to this definition">¶</a></dt>
+<dd><p>Number of rows</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="gspread.Worksheet.row_values">
+<tt class="descname">row_values</tt><big>(</big><em>row</em><big>)</big><a class="headerlink" href="#gspread.Worksheet.row_values" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a list of all values in a <cite>row</cite>.</p>
+<p>Empty cells in this list will be rendered as <tt class="xref py py-const docutils literal"><span class="pre">None</span></tt>.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="gspread.Worksheet.title">
+<tt class="descname">title</tt><em class="property"> None</em><a class="headerlink" href="#gspread.Worksheet.title" title="Permalink to this definition">¶</a></dt>
+<dd><p>Title of a worksheet.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="gspread.Worksheet.update_acell">
+<tt class="descname">update_acell</tt><big>(</big><em>label</em>, <em>val</em><big>)</big><a class="headerlink" href="#gspread.Worksheet.update_acell" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the new value to a cell.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>label</strong> &#8211; String with cell label in common format, e.g. &#8216;B1&#8217;.
+Letter case is ignored.</li>
+<li><strong>val</strong> &#8211; New value.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Example:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">wks</span><span class="o">.</span><span class="n">update_acell</span><span class="p">(</span><span class="s">&#39;A1&#39;</span><span class="p">,</span> <span class="s">&#39;42&#39;</span><span class="p">)</span> <span class="c"># this could be &#39;a1&#39; as well</span>
+<span class="go">&lt;Cell R1C1 &quot;I&#39;m cell A1&quot;&gt;</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="gspread.Worksheet.update_cell">
+<tt class="descname">update_cell</tt><big>(</big><em>row</em>, <em>col</em>, <em>val</em><big>)</big><a class="headerlink" href="#gspread.Worksheet.update_cell" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the new value to a cell.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>row</strong> &#8211; Row number.</li>
+<li><strong>col</strong> &#8211; Column number.</li>
+<li><strong>val</strong> &#8211; New value.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="gspread.Worksheet.update_cells">
+<tt class="descname">update_cells</tt><big>(</big><em>cell_list</em><big>)</big><a class="headerlink" href="#gspread.Worksheet.update_cells" title="Permalink to this definition">¶</a></dt>
+<dd><p>Updates cells in batch.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>cell_list</strong> &#8211; List of a <a class="reference internal" href="#gspread.Cell" title="gspread.Cell"><tt class="xref py py-class docutils literal"><span class="pre">Cell</span></tt></a> objects to update.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="gspread.Worksheet.updated">
+<tt class="descname">updated</tt><em class="property"> None</em><a class="headerlink" href="#gspread.Worksheet.updated" title="Permalink to this definition">¶</a></dt>
+<dd><p>Updated time in RFC 3339 format</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="gspread.Cell">
+<em class="property">class </em><tt class="descclassname">gspread.</tt><tt class="descname">Cell</tt><big>(</big><em>worksheet</em>, <em>element</em><big>)</big><a class="headerlink" href="#gspread.Cell" title="Permalink to this definition">¶</a></dt>
+<dd><p>An instance of this class represents a single cell
+in a <a class="reference internal" href="#gspread.Worksheet" title="gspread.Worksheet"><tt class="xref py py-class docutils literal"><span class="pre">worksheet</span></tt></a>.</p>
+<dl class="attribute">
+<dt id="gspread.Cell.col">
+<tt class="descname">col</tt><em class="property"> None</em><a class="headerlink" href="#gspread.Cell.col" title="Permalink to this definition">¶</a></dt>
+<dd><p>Column number of the cell.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="gspread.Cell.row">
+<tt class="descname">row</tt><em class="property"> None</em><a class="headerlink" href="#gspread.Cell.row" title="Permalink to this definition">¶</a></dt>
+<dd><p>Row number of the cell.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="gspread.Cell.value">
+<tt class="descname">value</tt><em class="property"> = None</em><a class="headerlink" href="#gspread.Cell.value" title="Permalink to this definition">¶</a></dt>
+<dd><p>Value of the cell.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="exceptions">
+<h2><a class="toc-backref" href="#id3">Exceptions</a><a class="headerlink" href="#exceptions" title="Permalink to this headline">¶</a></h2>
+<dl class="exception">
+<dt id="gspread.GSpreadException">
+<em class="property">exception </em><tt class="descclassname">gspread.</tt><tt class="descname">GSpreadException</tt><a class="headerlink" href="#gspread.GSpreadException" title="Permalink to this definition">¶</a></dt>
+<dd><p>A base class for gspread&#8217;s exceptions.</p>
+</dd></dl>
+
+<dl class="exception">
+<dt id="gspread.AuthenticationError">
+<em class="property">exception </em><tt class="descclassname">gspread.</tt><tt class="descname">AuthenticationError</tt><a class="headerlink" href="#gspread.AuthenticationError" title="Permalink to this definition">¶</a></dt>
+<dd><p>An error during authentication process.</p>
+</dd></dl>
+
+<dl class="exception">
+<dt id="gspread.SpreadsheetNotFound">
+<em class="property">exception </em><tt class="descclassname">gspread.</tt><tt class="descname">SpreadsheetNotFound</tt><a class="headerlink" href="#gspread.SpreadsheetNotFound" title="Permalink to this definition">¶</a></dt>
+<dd><p>Trying to open non-existent or inaccessible spreadsheet.</p>
+</dd></dl>
+
+<dl class="exception">
+<dt id="gspread.WorksheetNotFound">
+<em class="property">exception </em><tt class="descclassname">gspread.</tt><tt class="descname">WorksheetNotFound</tt><a class="headerlink" href="#gspread.WorksheetNotFound" title="Permalink to this definition">¶</a></dt>
+<dd><p>Trying to open non-existent or inaccessible worksheet.</p>
+</dd></dl>
+
+<dl class="exception">
+<dt id="gspread.NoValidUrlKeyFound">
+<em class="property">exception </em><tt class="descclassname">gspread.</tt><tt class="descname">NoValidUrlKeyFound</tt><a class="headerlink" href="#gspread.NoValidUrlKeyFound" title="Permalink to this definition">¶</a></dt>
+<dd><p>No valid key found in URL.</p>
+</dd></dl>
+
+<dl class="exception">
+<dt id="gspread.UpdateCellError">
+<em class="property">exception </em><tt class="descclassname">gspread.</tt><tt class="descname">UpdateCellError</tt><a class="headerlink" href="#gspread.UpdateCellError" title="Permalink to this definition">¶</a></dt>
+<dd><p>Error while setting cell&#8217;s value.</p>
+</dd></dl>
+
+<dl class="exception">
+<dt id="gspread.RequestError">
+<em class="property">exception </em><tt class="descclassname">gspread.</tt><tt class="descname">RequestError</tt><a class="headerlink" href="#gspread.RequestError" title="Permalink to this definition">¶</a></dt>
+<dd><p>Error while sending API request.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="internal-modules">
+<h2><a class="toc-backref" href="#id4">Internal Modules</a><a class="headerlink" href="#internal-modules" title="Permalink to this headline">¶</a></h2>
+<p>Following modules are for internal use only.</p>
+<span class="target" id="module-gspread.httpsession"></span><div class="section" id="gspread-httpsession">
+<h3><a class="toc-backref" href="#id5">gspread.httpsession</a><a class="headerlink" href="#gspread-httpsession" title="Permalink to this headline">¶</a></h3>
+<p>This module contains a class for working with http sessions.</p>
+<dl class="class">
+<dt id="gspread.httpsession.HTTPSession">
+<em class="property">class </em><tt class="descclassname">gspread.httpsession.</tt><tt class="descname">HTTPSession</tt><big>(</big><em>headers=None</em><big>)</big><a class="headerlink" href="#gspread.httpsession.HTTPSession" title="Permalink to this definition">¶</a></dt>
+<dd><p>Handles HTTP activity while keeping headers persisting across requests.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>headers</strong> &#8211; A dict with initial headers.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<span class="target" id="module-gspread.urls"></span><div class="section" id="gspread-urls">
+<h3><a class="toc-backref" href="#id6">gspread.urls</a><a class="headerlink" href="#gspread-urls" title="Permalink to this headline">¶</a></h3>
+<p>This module is Google API url patterns storage.</p>
+<dl class="function">
+<dt id="gspread.urls.construct_url">
+<tt class="descclassname">gspread.urls.</tt><tt class="descname">construct_url</tt><big>(</big><em>feedtype=None</em>, <em>obj=None</em>, <em>visibility='private'</em>, <em>projection='full'</em>, <em>spreadsheet_id=None</em>, <em>worksheet_id=None</em>, <em>cell_id=None</em>, <em>worksheet_version=None</em><big>)</big><a class="headerlink" href="#gspread.urls.construct_url" title="Permalink to this definition">¶</a></dt>
+<dd><p>Constructs URL to be used for API request.</p>
+</dd></dl>
+
 </div>
 </div>
-<div class="section" id="code">
-<h1>Code<a class="headerlink" href="#code" title="Permalink to this headline">¶</a></h1>
-<p>Check <a class="reference external" href="https://github.com/burnash/gspread">gspread on GitHub</a>.</p>
-<p>Any feedback is more than welcome: open up a new <a class="reference external" href="https://github.com/burnash/gspread/issues">github issue</a> and I&#8217;ll be dancing
-like crazy.</p>
 </div>
 <div class="section" id="indices-and-tables">
 <h1>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Permalink to this headline">¶</a></h1>
@@ -162,18 +778,20 @@ like crazy.</p>
         <div class="sphinxsidebarwrapper">
   <h3><a href="#">Table Of Contents</a></h3>
   <ul>
-<li><a class="reference internal" href="#">gspread — Google Spreadsheets Python library</a><ul>
-<li><a class="reference internal" href="#features">Features</a></li>
-<li><a class="reference internal" href="#example">Example</a></li>
+<li><a class="reference internal" href="#">gspread API Reference</a><ul>
+<li><a class="reference internal" href="#main-interface">Main Interface</a></li>
+<li><a class="reference internal" href="#models">Models</a></li>
+<li><a class="reference internal" href="#exceptions">Exceptions</a></li>
+<li><a class="reference internal" href="#internal-modules">Internal Modules</a><ul>
+<li><a class="reference internal" href="#gspread-httpsession">gspread.httpsession</a></li>
+<li><a class="reference internal" href="#gspread-urls">gspread.urls</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#code">Code</a></li>
+</ul>
+</li>
 <li><a class="reference internal" href="#indices-and-tables">Indices and tables</a></li>
 </ul>
 
-  <h4>Next topic</h4>
-  <p class="topless"><a href="userguide.html"
-                        title="next chapter">User Guide</a></p>
   <h3>This Page</h3>
   <ul class="this-page-menu">
     <li><a href="_sources/index.txt"
@@ -205,15 +823,25 @@ like crazy.</p>
         <li class="right" >
           <a href="py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
-        <li class="right" >
-          <a href="userguide.html" title="User Guide"
-             >next</a> |</li>
-        <li><a href="#">gspread 0.0.12 documentation</a> &raquo;</li> 
+        <li><a href="#">gspread 0.1.0 documentation</a> &raquo;</li> 
       </ul>
     </div>
+
     <div class="footer">
-        &copy; Copyright 2011, Anton Burnashev.
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.2.
+        &copy; Copyright 2013, Anton Burnashev.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2b2.
     </div>
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-44504650-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
   </body>
 </html>
