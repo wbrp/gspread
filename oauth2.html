@@ -1,0 +1,155 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Using OAuth2 for Authorization &mdash; gspread 0.2.1 documentation</title>
+    
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '0.2.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="gspread 0.2.1 documentation" href="index.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="index.html">gspread 0.2.1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="using-oauth2-for-authorization">
+<h1>Using OAuth2 for Authorization<a class="headerlink" href="#using-oauth2-for-authorization" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="oauth-credentials">
+<h2>OAuth Credentials<a class="headerlink" href="#oauth-credentials" title="Permalink to this headline">¶</a></h2>
+<p>OAuth credentials can be generated in several different ways using the
+<a class="reference external" href="https://github.com/google/oauth2client">oauth2client</a> library provided by Google. If you are
+editing spreadsheets for yourself then the easiest way to generate credentials is to use
+<em>Signed Credentials</em> stored in your application (see example below). If you plan to edit
+spreadsheets on behalf of others then visit the
+<a class="reference external" href="https://developers.google.com/accounts/docs/OAuth2">Google OAuth2 documentation</a> for more
+information.</p>
+</div>
+<div class="section" id="using-signed-credentials">
+<h2>Using Signed Credentials<a class="headerlink" href="#using-signed-credentials" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">gspread</span>
+<span class="kn">from</span> <span class="nn">oauth2client.client</span> <span class="kn">import</span> <span class="n">SignedJwtAssertionCredentials</span>
+
+<span class="n">scope</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;https://spreadsheets.google.com/feeds&#39;</span><span class="p">,</span> <span class="s">&#39;https://docs.google.com/feeds&#39;</span><span class="p">]</span>
+
+<span class="n">credentials</span> <span class="o">=</span> <span class="n">SignedJwtAssertionCredentials</span><span class="p">(</span><span class="s">&#39;developer@example.com&#39;</span><span class="p">,</span> <span class="n">SIGNED_KEY</span><span class="p">,</span> <span class="n">scope</span><span class="p">)</span>
+
+<span class="n">gc</span> <span class="o">=</span> <span class="n">gspread</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="n">credentials</span><span class="p">)</span>
+<span class="n">wks</span> <span class="o">=</span> <span class="n">gc</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s">&quot;Where is the money Lebowski?&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">sheet1</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="custom-credentials-objects">
+<h2>Custom Credentials Objects<a class="headerlink" href="#custom-credentials-objects" title="Permalink to this headline">¶</a></h2>
+<p>If you have another method of authenicating you can easily hack a custom credentials object.</p>
+<div class="highlight-python"><pre>class Credentials (object):
+  def __init__ (self, access_token=None):
+    self.access_token = access_token
+
+  def refresh (self, http):
+    # get new access_token
+    # this only gets called if access_token is None</pre>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Using OAuth2 for Authorization</a><ul>
+<li><a class="reference internal" href="#oauth-credentials">OAuth Credentials</a></li>
+<li><a class="reference internal" href="#using-signed-credentials">Using Signed Credentials</a></li>
+<li><a class="reference internal" href="#custom-credentials-objects">Custom Credentials Objects</a></li>
+</ul>
+</li>
+</ul>
+
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/oauth2.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="index.html">gspread 0.2.1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+
+    <div class="footer">
+        &copy; Copyright 2014, Anton Burnashev.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2b2.
+    </div>
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-44504650-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+  </body>
+</html>
