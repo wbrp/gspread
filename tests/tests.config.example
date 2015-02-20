@@ -3,19 +3,12 @@ email: example@gmail.com
 password: password
 
 [Spreadsheet]
-id:
-title:
-key:
-url:
-sheet1_title:
+title: Title of test spreadsheet
+key: Key of test spreadsheet
+url: Full URL of test spreadsheet
 
-[Worksheet]
-id:
-title:
-row_count:
-col_count:
-
-[WorksheetDelete]
-ws1_name:
-ws2_name:
-
+[Worksheet Properties]
+id: ID of existing worksheet in test spreadsheet (e.g. "o3nrnm9")
+title: Title of above worksheet
+row_count: Row count of above worksheet
+col_count: Column count of above worksheet
