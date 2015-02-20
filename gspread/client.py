@@ -20,8 +20,7 @@ from .models import Spreadsheet
 from .urls import construct_url
 from .utils import finditem
 from .exceptions import (AuthenticationError, SpreadsheetNotFound,
-                         NoValidUrlKeyFound, UpdateCellError,
-                         RequestError)
+                         NoValidUrlKeyFound, UpdateCellError, RequestError)
 
 
 AUTH_SERVER = 'https://www.google.com'
@@ -104,8 +103,7 @@ class Client(object):
 
             except HTTPError as ex:
                 if ex.code == 403:
-                    content = ex.read().decode()
-                    if content.strip() == 'Error=BadAuthentication':
+                    if ex.message.strip() == 'Error=BadAuthentication':
                         raise AuthenticationError("Incorrect username or password")
                     else:
                         raise AuthenticationError(
@@ -217,38 +215,54 @@ class Client(object):
         url = construct_url('spreadsheets',
                             visibility=visibility, projection=projection)
 
-        r = self.session.get(url)
+        try:
+            r = self.session.get(url)
+        except HTTPError as ex:
+            raise RequestError(ex.code, ex.message)
+
         return ElementTree.fromstring(r.read())
 
     def get_worksheets_feed(self, spreadsheet,
                             visibility='private', projection='full'):
+
         url = construct_url('worksheets', spreadsheet,
                             visibility=visibility, projection=projection)
 
-        r = self.session.get(url)
+        try:
+            r = self.session.get(url)
+        except HTTPError as ex:
+            raise RequestError(ex.code, ex.message)
+
         return ElementTree.fromstring(r.read())
 
     def get_cells_feed(self, worksheet,
                        visibility='private', projection='full', params=None):
-
         url = construct_url('cells', worksheet,
                             visibility=visibility, projection=projection)
 
         if params:
             params = urlencode(params)
             url = '%s?%s' % (url, params)
+        try:
+            r = self.session.get(url)
+        except HTTPError as ex:
+            raise RequestError(ex.code, ex.message)
 
-        r = self.session.get(url)
         return ElementTree.fromstring(r.read())
 
     def get_feed(self, url):
         r = self.session.get(url)
+
         return ElementTree.fromstring(r.read())
 
     def del_worksheet(self, worksheet):
-        url = construct_url(
-            'worksheet', worksheet, 'private', 'full', worksheet_version=worksheet.version)
-        r = self.session.delete(url)
+        url = construct_url('worksheet', worksheet, 'private', 'full',
+                            worksheet_version=worksheet.version)
+
+        try:
+            r = self.session.delete(url)
+        except HTTPError as ex:
+            raise RequestError(ex.code, ex.message)
         # Even though there is nothing interesting in the response body
         # we have to read it or the next request from this session will get a
         # httplib.ResponseNotReady error.
@@ -259,7 +273,11 @@ class Client(object):
         url = construct_url('cells_cell_id', worksheet, cell_id=cell_id,
                             visibility=visibility, projection=projection)
 
-        r = self.session.get(url)
+        try:
+            r = self.session.get(url)
+        except HTTPError as ex:
+            raise RequestError(ex.code, ex.message)
+
         return ElementTree.fromstring(r.read())
 
     def put_feed(self, url, data):
@@ -271,22 +289,19 @@ class Client(object):
             r = self.session.put(url, data, headers=headers)
         except HTTPError as ex:
             if ex.code == 403:
-                message = ex.read().decode()
-                raise UpdateCellError(message)
+                raise UpdateCellError(ex.message)
             else:
-                raise ex
+                raise RequestError(ex.code, ex.message)
 
         return ElementTree.fromstring(r.read())
 
     def post_feed(self, url, data):
         headers = {'Content-Type': 'application/atom+xml'}
         data = self._add_xml_header(data)
-
         try:
             r = self.session.post(url, data, headers=headers)
         except HTTPError as ex:
-            message = ex.read().decode()
-            raise RequestError(message)
+            raise RequestError(ex.code, ex.message)
 
         return ElementTree.fromstring(r.read())
 
@@ -295,7 +310,10 @@ class Client(object):
                    'If-Match': '*'}
         data = self._add_xml_header(data)
         url = construct_url('cells_batch', worksheet)
-        r = self.session.post(url, data, headers=headers)
+        try:
+            r = self.session.post(url, data, headers=headers)
+        except HTTPError as ex:
+            raise RequestError(ex.code, ex.message)
 
         return ElementTree.fromstring(r.read())
 

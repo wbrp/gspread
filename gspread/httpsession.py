@@ -24,12 +24,16 @@ except NameError:
 
 
 class HTTPError(Exception):
+
     def __init__(self, response):
         self.code = response.status
-        self.response = response
+        # Immediately read out the response - if we don't and the exception
+        # handler also doesn't, then the next request will fail.
+        self.message = response.read().decode('utf8')
 
     def read(self):
-        return self.response.read()
+        # Backwards compatibility
+        return self.message.encode('utf8')
 
 
 class HTTPSession(object):
