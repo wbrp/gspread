@@ -81,7 +81,8 @@ class HTTPSession(object):
     def delete(self, url, **kwargs):
         return self.request('DELETE', url, **kwargs)
 
-    def post(self, url, data=None, headers={}):
+    def post(self, url, data=None, headers=None):
+        headers = headers or {}
         return self.request('POST', url, data=data, headers=headers)
 
     def put(self, url, data=None, **kwargs):
